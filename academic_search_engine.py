@@ -29,7 +29,7 @@ def callback():
     elif Btn2.get() == "NCBI":
         webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
 
-    elif Btn2.get() == "Todos":
+    elif Btn2.get() == "All":
         webbrowser.open('https://www.semanticscholar.org/search?q= '+ ENTRY1.get())
         webbrowser.open('https://www.nature.com/search?q='+ENTRY1.get())
         webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
@@ -48,7 +48,7 @@ def get(event):
     elif Btn2.get() == "NCBI":
         webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
 
-    elif Btn2.get() == "Todos":
+    elif Btn2.get() == "All":
         webbrowser.open('https://www.semanticscholar.org/search?q= '+ ENTRY1.get())
         webbrowser.open('https://www.nature.com/search?q='+ENTRY1.get())
         webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
@@ -68,7 +68,7 @@ BUTTON_3.grid(row=1, column=1, sticky='E')
 BUTTON_4 = ttk.Radiobutton(ROOT, text='NCBI', value='NCBI', variable=Btn2)
 BUTTON_4.grid(row=1, column=1, sticky='N')
 
-BUTTON_5 = ttk.Radiobutton(ROOT, text='Todos', value='Todos', variable=Btn2)
+BUTTON_5 = ttk.Radiobutton(ROOT, text='All', value='All', variable=Btn2)
 BUTTON_5.grid(row=1, column=2, sticky='S')
 
 

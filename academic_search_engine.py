@@ -7,6 +7,7 @@ import tkinter as tk
 from tkinter import ttk
 import webbrowser
 
+print("Changes were made")
 
 ROOT = tk.Tk()
 ROOT.title('Academic Search Engine')

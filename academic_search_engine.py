@@ -9,6 +9,8 @@ import webbrowser
 
 print("Changes were made")
 
+print("Chages were made again")
+
 ROOT = tk.Tk()
 ROOT.title('Academic Search Engine')
 

@@ -7,78 +7,74 @@ import tkinter as tk
 from tkinter import ttk
 import webbrowser
 
-print("Changes were made")
-
-print("Chages were made again")
-
-ROOT = tk.Tk()
-ROOT.title('Academic Search Engine')
-
-LABELL = ttk.Label(ROOT, text='Query')
-LABELL.grid(row=0, column=0)
-ENTRY1 = ttk.Entry(ROOT, width=50)
-ENTRY1.grid(row=0, column=1)
-
-Btn2 = tk.StringVar()
-
-def callback():
-    """Uses the webbrowser to open an url"""
-    if Btn2.get() == 'Semantic Scholar':
-        webbrowser.open('https://www.semanticscholar.org/search?q= ' + ENTRY1.get())
-
-    elif Btn2.get() == 'Nature':
-        webbrowser.open('https://www.nature.com/search?q='+ENTRY1.get())
-
-    elif Btn2.get() == "NCBI":
-        webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
-
-    elif Btn2.get() == "All":
-        webbrowser.open('https://www.semanticscholar.org/search?q= '+ ENTRY1.get())
-        webbrowser.open('https://www.nature.com/search?q='+ENTRY1.get())
-        webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
+class Acad_engine:
+    def __init__(self, window,title):
+        self.window = window
+        self.window.title(title)
+        self.label = ttk.Label(self.window, text = "Query")
+        self.label.grid(row = 0, column = 0)
+        self.entry1 = ttk.Entry(self.window, width = 50)
+        self.entry1.grid(row = 0, column = 1)
+        self.string = tk.StringVar()
 
 
+        self.btn1 = ttk.Button(self.window, text='Search', width=10, command=self.callback)
+        self.btn1.grid(row=0, column=2)
 
-def get(event):
-    """The same as the callback function but here we press enter key"""
+        self.entry1.bind('<Return>', self.get)
 
-    if Btn2.get() == 'Semantic Scholar':
-        webbrowser.open('https://www.semanticscholar.org/search?q= '+ ENTRY1.get())
+        self.btn2 = ttk.Radiobutton(self.window, text='Semantic Scholar', value='Semantic Scholar', variable=self.string)
+        self.btn2.grid(row=1, column=1, sticky='W')
 
-    elif Btn2.get() == 'Nature':
-        webbrowser.open('https://www.nature.com/search?q='+ENTRY1.get())
+        self.btn3 = ttk.Radiobutton(self.window, text='Nature', value='Nature', variable=self.string)
+        self.btn3.grid(row=1, column=1, sticky='E')
 
-    elif Btn2.get() == "NCBI":
-        webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
+        self.btn4 = ttk.Radiobutton(self.window, text='NCBI', value='NCBI', variable=self.string)
+        self.btn4.grid(row=1, column=1, sticky='N')
 
-    elif Btn2.get() == "All":
-        webbrowser.open('https://www.semanticscholar.org/search?q= '+ ENTRY1.get())
-        webbrowser.open('https://www.nature.com/search?q='+ENTRY1.get())
-        webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + ENTRY1.get())
+        self.btn5 = ttk.Radiobutton(self.window, text='All', value='All', variable=self.string)
+        self.btn5.grid(row=1, column=2, sticky='S')
 
+        self.entry1.focus()
 
-BUTTON_1 = ttk.Button(ROOT, text='Search', width=10, command=callback)
-BUTTON_1.grid(row=0, column=2)
+        self.window.wm_attributes('-topmost', 1)
 
-ENTRY1.bind('<Return>', get)
-
-BUTTON_2 = ttk.Radiobutton(ROOT, text='Semantic Scholar', value='Semantic Scholar', variable=Btn2)
-BUTTON_2.grid(row=1, column=1, sticky='W')
-
-BUTTON_3 = ttk.Radiobutton(ROOT, text='Nature', value='Nature', variable=Btn2)
-BUTTON_3.grid(row=1, column=1, sticky='E')
-
-BUTTON_4 = ttk.Radiobutton(ROOT, text='NCBI', value='NCBI', variable=Btn2)
-BUTTON_4.grid(row=1, column=1, sticky='N')
-
-BUTTON_5 = ttk.Radiobutton(ROOT, text='All', value='All', variable=Btn2)
-BUTTON_5.grid(row=1, column=2, sticky='S')
+        self.window.mainloop()
 
 
 
+    def callback(self):
+        """Uses the webbrowser to open an url"""
+        if self.string.get() == 'Semantic Scholar':
+            webbrowser.open('https://www.semanticscholar.org/search?q= ' + self.entry1.get())
 
-ENTRY1.focus()
+        elif self.string.get() == 'Nature':
+            webbrowser.open('https://www.nature.com/search?q='+self.entry1.get())
 
-ROOT.wm_attributes('-topmost', 1)
+        elif self.string.get() == "NCBI":
+            webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + self.entry1.get())
 
-ROOT.mainloop()
+        elif self.string.get() == "All":
+            webbrowser.open('https://www.semanticscholar.org/search?q= '+ self.entry1.get())
+            webbrowser.open('https://www.nature.com/search?q='+self.entry1.get())
+            webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + self.entry1.get())
+
+    def get(self,event):
+        """The same as the callback function but here we press enter key"""
+
+        if self.string.get() == 'Semantic Scholar':
+            webbrowser.open('https://www.semanticscholar.org/search?q= '+ self.entry1.get())
+
+        elif self.string.get() == 'Nature':
+            webbrowser.open('https://www.nature.com/search?q='+self.entry1.get())
+
+        elif self.string.get() == "NCBI":
+            webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + self.entry1.get())
+
+        elif self.string.get() == "All":
+            webbrowser.open('https://www.semanticscholar.org/search?q= '+ self.entry1.get())
+            webbrowser.open('https://www.nature.com/search?q='+self.entry1.get())
+            webbrowser.open("https://www.ncbi.nlm.nih.gov/search/?term=" + self.entry1.get())
+
+if __name__ == "__main__":
+    Acad_engine(tk.Tk(), "Academic Seach Engine")
